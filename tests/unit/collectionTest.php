@@ -49,7 +49,7 @@ class CollectionTest extends TestCase
 		foreach ($collection as  $value) {
 			$items[] = $value;
 		}
-		$this->assertEquals(2,$items);
+		$this->assertEquals(2,count($items));
 	}
 
 	/** @test */
