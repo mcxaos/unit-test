@@ -4,43 +4,55 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-	public function testFirstName()
+
+	protected $user;
+	public function setUp()
 	{
-		$user = new \App\Models\User;
-		$user->setFirstName('FirstName');
-		$this->assertEquals($user->getFirstName(),'FirstName');
+		$this->user = new \App\Models\User;
+		$this->user->setFirstName('First Name');
+		$this->user->setLastName('Last Name');
+		$this->user->setEmail('test@test.com');
+
+	}
+	/**
+		@test
+	*/
+	public function FirstName()
+	{
+	
+		
+		$this->assertEquals($this->user->getFirstName(),'First Name');
 	}
 
 	public function testLastName()
 	{
-		$user = new \App\Models\User;
-		$user->setLastName('Last Name');
-		$this->assertEquals($user->getLastName(),'Last Name');
+		
+		
+		$this->assertEquals($this->user->getLastName(),'Last Name');
 	}
 
 	public function testFullName()
 	{
-		$user = new \App\Models\User;
-		$user->setFirstName('FirstName');
-		$user->setLastName('LastName');
+	
+		
 
-		$this->assertEquals($user->getFullName(),"FirstName LastName");
+		$this->assertEquals($this->user->getFullName(),"First Name Last Name");
 	}
 
 	public function testTrim()
 	{
-		$user = new \App\Models\User;
-		$user->setFirstName('First Name   ');
-		$user->setLastName('   Last Name');
-		$this->assertEquals($user->getFirstName(),'First Name');
-		$this->assertEquals($user->getLastName(),'Last Name');
+		
+		$this->user->setFirstName('First Name   ');
+		$this->user->setLastName('   Last Name');
+		$this->assertEquals($this->user->getFirstName(),'First Name');
+		$this->assertEquals($this->user->getLastName(),'Last Name');
 	}
 
 	public function testEmail()
 	{
-		$user = new \App\Models\User;
-		$user->setEmail('test@test.com');
-		$this->assertRegExp("/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/i",$user->getEmail());
+	
+		
+		$this->assertRegExp("/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/i",$this->user->getEmail());
 
 	}
 }
